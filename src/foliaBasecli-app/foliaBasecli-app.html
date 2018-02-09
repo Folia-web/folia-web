@@ -23,13 +23,14 @@
         this.lines=[]
       },
       startFolia:function(){
-        var evtSource = new EventSource("http://localhost/result?leafId=333&maskId=22222");
+        var evtSource = new EventSource("/result?leafId=333&maskId=22222");
         evtSource.onmessage = function(e) {
               console.log("received event");
               console.log(e);
               this.push('lines',e.data)
         };
         evtSource.onerror = function(e) {
+              evtSource.close()
               console.log("EventSource failed.");
         };
         console.log(evtSource);
