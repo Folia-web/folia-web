@@ -24,7 +24,7 @@
       },
       startFolia:function(){
         var that=this
-        var evtSource = new EventSource("/result?leafId=333&maskId=22222");
+        var evtSource = new EventSource("/proxy/result?leafId=333&maskId=22222");
         evtSource.onmessage = function(e) {
               console.log("received event");
               console.log(e);
