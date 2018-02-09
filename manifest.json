@@ -1,0 +1,6 @@
+{
+  "name": "foliaBasecli",
+  "short_name": "foliaBasecli",
+  "start_url": "/",
+  "display": "standalone"
+}

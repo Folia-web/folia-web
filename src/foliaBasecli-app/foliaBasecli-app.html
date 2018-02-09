@@ -1,0 +1,47 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<dom-module id="foliaBasecli-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello Folia</h2>
+    <paper-button on-click="startFolia">startFolia</paper-button>
+    <template is="dom-repeat" items="{{lines}}">
+      <div>[[item]]</div>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'foliaBasecli-app',
+      ready: function() {
+        this.lines=[]
+      },
+      startFolia:function(){
+        var evtSource = new EventSource("http://172.104.245.182/result?leafId=333&maskId=22222");
+        evtSource.onmessage = function(e) {
+              console.log("received event");
+              console.log(e);
+              this.push('lines',e.data)
+        };
+        evtSource.onerror = function(e) {
+              console.log("EventSource failed.");
+        };
+        console.log(evtSource);
+
+      },
+      properties: {
+        prop1: {
+          type: String,
+          value: 'foliaBasecli-app',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
